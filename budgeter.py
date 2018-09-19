@@ -1,5 +1,5 @@
 from math import *
-class Debt():
+class Bill():
 	'''
 	A debt object that hold the name, monthly minimum, interest rate of each loan/bill
 	
@@ -27,67 +27,63 @@ class Debt():
 		Shows how long it will take to pay off the principle, returns null if no principle
 	'''
 	
-	def __init__(self, author, title, price=0.00):
+	def __init__(self, name, monthCost, interest, principle, lateFee):
 		'''
-		Constructor to build a book object
-		
-		
-		Parameters
-		----------
-		author : str
-			The name of the author of the book
-		price : float, optional
-			The initial price of the book
-			The default price of a book is 0.00 if none is entered
-		title : str
-			The title of the book
-			
-		..note:: that the "self" parameter is not listed in this section.
+		Paremeters
+	----------
+	name: str
+		The price of the book in dollars and cents (example format ###.##)
+	monthCost : float
+		The minumum amount that must be paid each month
+	interest : float, optional
+		The interest on the payments (0 if not present)
+	principle: float, optiona;
+                Initial amount that must be paid back (0 if for a monthly bill)
+        lateFee: float, optional
+                Amount that must be paid if you pay late
 			
 		
 			
 		'''
 		
-		self.author = author
-		self.price = price
-		self.title = title
+		self.name = name
+		self.monthCost = monthCost
+		self.interest = interest
+		self.principle = principle
+		self.lateFee = lateFee
 		
 		
-	def printAuthor(self) -> None:
+	def payMonth(self) -> None:
 		'''
-		Prints the name of the author to the console
-		
-		
-		.. warning:: The rest of the documentation will be here at some point.
-		
+   Conducts the monthly payment, paying interest and principle if applicable
+                
 		'''
-		print(self.author)
-		return
+		if(principle!=0):
+      principle = principle - monthCost + principle* interest
+      if (principle == 0):
+        monthCost = 0
+        print("Paid $" + str(monthCost), " on " + name, "reducing the original debt to 0. Congratulations!")
+        else:
+          print("Paid $" + str(monthCost), " on " + name, "reducing the original debt by " + str(monthCost - interest)
+
+    else:
+    print("Paid " + str(monthCost) "for " + name)
+
+		return monthCost
 	
 	
-	def printPrice(self) -> None:
+	def increasePayment(self) -> None:
 		'''
-		Prints the price of the book to the console
-		
-		.. warning:: The rest of the documentation will be here at some point.
+		Changes the monthly cost
 		
 		'''
-		print(self.price)
-		return
+    self.monthCost = input("Please enter the new monthly payment")
+		print("monthly payment changed to: " str(monthCost)
+		return monthCost
 		
 		
-	def printTitle(self) -> None:
-		'''
-		Prints the title of the book to the console
-		
-		.. warning:: The rest of the documentation will be here at some point.
-		
-		'''
-		print(self.title)
-		return
 	
-	
-	def increasePrice(self, increase : float) -> None:
+	def showSchedule(self) -> None:
 		'''
 		Attempts to increase the price of the book
 		
@@ -116,29 +112,14 @@ class Debt():
 			be added to self.price : float.
 		
 		'''
+    monthCount = 0
+		testvar = principle
+		while(testvar >= 0):
+      testvar -= monthCost
+      testvar += testvar * interest
+      monthCount++
+    print("With a debt of " +str(principle), "and a monthly interest rate of " + str(interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
+    return monthCount
+
 		
-		if self.price + increase > 0:
-			self.price += increase
-			return True
-		return Falses
 
-bookOne = Book("Terry Pratchett", "Guards! Guards!", 5.99)
-bookTwo = Book("Robert Jordan", "The Eye of the World", 8.99)
-
-bookOne.printAuthor()
-bookOne.printPrice()
-bookOne.printTitle()
-bookOne.increasePrice(1)
-bookOne.printPrice()
-
-bookTwo.printAuthor()
-bookTwo.printPrice()
-bookTwo.printTitle()
-bookTwo.increasePrice(-6)
-bookTwo.printPrice()
-try:
-	bookTwo.increasePrice("Hello!")
-except TypeError:
-	print ("Raised a TypeError as expected")
-except Exception:
-	print ("Some other Error popped up?")
