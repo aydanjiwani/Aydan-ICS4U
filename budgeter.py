@@ -27,9 +27,9 @@ class Bill():
 		Shows how long it will take to pay off the principle, returns null if no principle
 	'''
 	
-	def __init__(self, name, monthCost, interest, principle, lateFee):
+	def __init__(self, name, monthCost, interest, principle):
 		'''
-		Paremeters
+		Parameters
 	----------
 	name: str
 		The price of the book in dollars and cents (example format ###.##)
@@ -39,9 +39,7 @@ class Bill():
 		The interest on the payments (0 if not present)
 	principle: float, optiona;
                 Initial amount that must be paid back (0 if for a monthly bill)
-        lateFee: float, optional
-                Amount that must be paid if you pay late
-			
+        
 		
 			
 		'''
@@ -55,53 +53,44 @@ class Bill():
 		
 	def payMonth(self) -> None:
 		'''
-   Conducts the monthly payment, paying interest and principle if applicable
+		Conducts the monthly payment, reducing the principle and adding interest if applicable.
+		
+		Returns
+		------
+		monthCost: float
+		The amount paid this month
                 
 		'''
-		if(principle!=0):
-      principle = principle - monthCost + principle* interest
-      if (principle == 0):
-        monthCost = 0
-        print("Paid $" + str(monthCost), " on " + name, "reducing the original debt to 0. Congratulations!")
-        else:
-          print("Paid $" + str(monthCost), " on " + name, "reducing the original debt by " + str(monthCost - interest)
+		if(self.principle!=0):
+			self.principle = self.principle - self.monthCost + self.principle* self.interest
+			if (self.principle == 0):
+				self.monthCost = 0
+				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt to 0. Congratulations!")
+			else:
+				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt by " + str(self.monthCost - self.principle-self.interest)
 
-    else:
-    print("Paid " + str(monthCost) "for " + name)
+		else:
+			print("Paid " + str(self.monthCost) "for " + self.name)
 
-		return monthCost
+		return self.monthCost
 	
 	
-	def increasePayment(self) -> None:
+	def increasePayment(self, newPayment: float) -> None:
 		'''
-		Changes the monthly cost
+		Attempts to change the monthly payment
 		
-		'''
-    self.monthCost = input("Please enter the new monthly payment")
-		print("monthly payment changed to: " str(monthCost)
-		return monthCost
-		
-		
-	
-	def showSchedule(self) -> None:
-		'''
-		Attempts to increase the price of the book
-		
-		This will add the value of 'increase' to self.price.  If there is any issues, 
-		it will return False if it attempts to lower the price below zero.
-		
+		This will change self.monthCost to the value of newPayment
 		Parameters
 		----------
-		increase : float
-			The value to increase the price by.  This value can be negative;
-			however, it will never lower the value below zero.  If this happens
-			the function will return False.
+		newPayment : float
+			The value to change the monthCost to.
 				
 		Returns
 		-------
 		bool
 			True if the method was successful
 			False if the method attempted to bring the value below zero
+			
 		
 		Raises
 		------
@@ -112,14 +101,38 @@ class Bill():
 			be added to self.price : float.
 		
 		'''
-    monthCount = 0
-		testvar = principle
-		while(testvar >= 0):
-      testvar -= monthCost
-      testvar += testvar * interest
-      monthCount++
-    print("With a debt of " +str(principle), "and a monthly interest rate of " + str(interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
-    return monthCount
+		self.monthCost = newPayment
+		print("monthly payment changed to: " str(self.monthCost)
+		if monthCost > 0:
+			return True
+		return False
+		
+		
+	
+	def showSchedule(self) -> None:
+		'''
+		Calculates how many payment periods it will take
+		Returns
+		-------
+		monthCount: float
+			The number of payment periods it will take to pay off the debt
+		
+		
+		
+		'''
+		monthCount = 0
+		testvar = self.principle
+		while(testvar > 0):
+			testvar -= self.monthCost
+			testvar += testvar * self.interest
+			monthCount++
+		print("With a debt of " +str(self.principle), "and a monthly interest rate of " + str(self.interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
+		return monthCount
 
+		
+billOne = Bill("Student Loan", 250, 0.1, 10000)
+billOne.showSchedule()
+billOne.increasePayment(500)
+billOne.showSchedule()
 		
 
