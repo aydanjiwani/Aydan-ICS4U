@@ -51,7 +51,7 @@ class Bill():
 		self.lateFee = lateFee
 		
 		
-	def payMonth(self) -> None:
+	def payMonth(self)
 		'''
 		Conducts the monthly payment, reducing the principle and adding interest if applicable.
 		
@@ -75,7 +75,7 @@ class Bill():
 		return self.monthCost
 	
 	
-	def increasePayment(self, newPayment: float) -> None:
+	def increasePayment(self, newPayment: float)
 		'''
 		Attempts to change the monthly payment
 		
@@ -109,7 +109,7 @@ class Bill():
 		
 		
 	
-	def showSchedule(self) -> None:
+	def showSchedule(self)
 		'''
 		Calculates how many payment periods it will take
 		Returns
@@ -125,7 +125,7 @@ class Bill():
 		while(testvar > 0):
 			testvar -= self.monthCost
 			testvar += testvar * self.interest
-			monthCount++
+			monthCount+=1
 		print("With a debt of " +str(self.principle), "and a monthly interest rate of " + str(self.interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
 		return monthCount
 
