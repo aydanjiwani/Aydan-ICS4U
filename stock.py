@@ -9,26 +9,48 @@ An object that holds the information of a selected stock
 	Attributes
 	----------
 	name: str
-		The price of the book in dollars and cents (example format ###.##)
-	monthCost : float
-		The minumum amount that must be paid each month
-	interest : float
-		The interest on the payments (0 if not present)
-	principle: float
-                Initial amount that must be paid back (0 if for a monthly bill)
-        lateFee: float
-                Amount that must be paid if you pay late
+		The name of the stock (Ticker)
+	Value : float
+		The most recent closing price of the stock
+	RSI : float
+		A magic number that can be used to determine if a stock is oversold or undersold (in theory)
+	SMA: float
+        A magic number that can be used to determine if a stock is trending up or down (in theory)
+	Methods
+	-------
+	getInfo() -> none
+		A method that prints the relevant info of the stock
+	
+
 """
     def __init__(self, name, value, RSI, SMA):
         self.name = name
         self.value = value
         self.RSI = RSI
         self.SMA = SMA
-    
-   
+		"""
+    Parameters
+	----------
+	name: str
+		The name of the stock (Ticker)
+	Value : float
+		The most recent closing price of the stock
+	RSI : float
+		A magic number that can be used to determine if a stock is oversold or undersold (in theory)
+	SMA: float
+        A magic number that can be used to determine if a stock is trending up or down (in theory)
+   """
     
 
     def getInfo(self):
+	'''
+		Prints all relevant info about stock to a text file
+		
+		Returns
+		------
+		none
+                
+		'''
         f = open("stockinfo.txt", "w")
         ts = TimeSeries(key='GZR6JEGOB3LF6RCB')
         tc = TechIndicators(key='GZR6JEGOB3LF6RCB',output_format='pandas')

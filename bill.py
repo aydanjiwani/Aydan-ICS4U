@@ -32,7 +32,7 @@ class Bill():
 		Parameters
 	----------
 	name: str
-		The price of the book in dollars and cents (example format ###.##)
+		The name of the bill
 	monthCost : float
 		The minumum amount that must be paid each month
 	interest : float, optional
