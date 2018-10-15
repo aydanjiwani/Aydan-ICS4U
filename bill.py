@@ -51,7 +51,7 @@ class Bill():
 		self.lateFee = lateFee
 		
 		
-	def payMonth(self)
+	def payMonth(self):
 		'''
 		Conducts the monthly payment, reducing the principle and adding interest if applicable.
 		
@@ -75,7 +75,7 @@ class Bill():
 		return self.monthCost
 	
 	
-	def increasePayment(self, newPayment: float)
+	def increasePayment(self, newPayment: float):
 		'''
 		Attempts to change the monthly payment
 		
@@ -109,7 +109,7 @@ class Bill():
 		
 		
 	
-	def showSchedule(self)
+	def showSchedule(self):
 		'''
 		Calculates how many payment periods it will take
 		Returns
