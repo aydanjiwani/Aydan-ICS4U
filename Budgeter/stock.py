@@ -53,7 +53,7 @@ An object that holds the information of a selected stock
 		'''
         f = open("stockinfo.txt", "w")
         ts = TimeSeries(key='GZR6JEGOB3LF6RCB')
-        tc = TechIndicators(key='GZR6JEGOB3LF6RCB',output_format='pandas')
+        tc = TechIndicators(key='GZR6JEGOB3LF6RCB')
         data, meta_data = ts.get_daily(self.name)
         data2, meta_data2 = tc.get_rsi(self.name)
         data3, meta_data3 = tc.get_sma(self.name)
