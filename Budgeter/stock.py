@@ -64,5 +64,4 @@ An object that holds the information of a selected stock
         f.write("The most recent closing price is: " + str(self.value) + "\n")
         print("stock info added to file")
 
-StockOne = Stock("GOOG",0, 0, 0)
-StockOne.getInfo()
+
