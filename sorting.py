@@ -1,4 +1,16 @@
 def Bubblesort (sortlist):
+"""
+Receives a list and sorts it using the bubble sort algorithm
+    Parameters
+    ----------
+        sortlist: int
+            list to be sorted
+
+
+    Returns
+    ----------
+        sortlist =  the input, but sorted
+"""
 	donezo = false
 	while(!donezo):
 		donezo = true
@@ -15,7 +27,18 @@ def Bubblesort (sortlist):
 	
 
 def Insertionsort (sortlist):
+"""
+Receives a list and sorts it using the insertion sort algorithm
+    Parameters
+    ----------
+        sortlist: int
+            list to be sorted
 
+
+    Returns
+    ----------
+        sortlist =  the input, but sorted
+"""
 		for i in range (0,len(sortlist)):
 			current = sortlist[i]
 			 while i>0 and sortlist[i-1]>current:
