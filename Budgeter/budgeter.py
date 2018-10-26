@@ -16,25 +16,3 @@ billOne.showSchedule()
 StockOne = Stock("GOOG",0, 0, 0)
 StockOne.getInfo()
 
-def Bubblesort (sortlist):
-	donezo = false
-	while(!donezo):
-		donezo = true
-		for i in range (0,len(sortlist)):
-	
-			if(sortlist[i] > sortlist[i+1])
-				placeholder = sortlist[i]
-				sortlist[i] = sortlist[i+1]
-				sortlist[i+1] = placeholder
-				donezo = false
-	
-	
-
-def Insertionsort (sortlist):
-	donezo = false
-	while(!donezo):
-		donezo = true
-		for i in range (0,len(sortlist)):
-			for i in range 
-				donezo = false
-	
