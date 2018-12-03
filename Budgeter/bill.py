@@ -13,9 +13,7 @@ class Bill():
 		The interest on the payments (0 if not present)
 	principle: float
                 Initial amount that must be paid back (0 if for a monthly bill)
-        lateFee: float
-                Amount that must be paid if you pay late
-		
+
 	Methods
 	-------
 	
@@ -48,7 +46,7 @@ class Bill():
 		self.monthCost = monthCost
 		self.interest = interest
 		self.principle = principle
-		self.lateFee = lateFee
+
 		
 		
 	def payMonth(self):
