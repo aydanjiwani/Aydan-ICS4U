@@ -1,5 +1,6 @@
 from math import *
-class Bill():
+from bill import Bill
+class Debt(Bill):
 	'''
 	A debt object that hold the name, monthly minimum, interest rate of each loan/bill
 	
@@ -25,7 +26,7 @@ class Bill():
 		Shows how long it will take to pay off the principle, returns null if no principle
 	'''
 	
-	def __init__(self, name, monthCost):
+	def __init__(self, name, monthCost, interest, principle, priority):
 		'''
 		Parameters
 	----------
@@ -33,15 +34,19 @@ class Bill():
 		The name of the bill
 	monthCost : float
 		The minumum amount that must be paid each month
-
+	interest : float, optional
+		The interest on the payments (0 if not present)
+	principle: float, optiona;
+                Initial amount that must be paid back (0 if for a monthly bill)
         
 		
 			
 		'''
 		
-		self.name = name
-		self.monthCost = monthCost
-
+		super().__init__(name, monthCost)
+		self.interest = interest
+		self.principle = principle
+		self.priority = priority
 
 		
 		
@@ -55,8 +60,16 @@ class Bill():
 		The amount paid this month
                 
 		'''
+		if(self.principle!=0):
+			self.principle = self.principle - self.monthCost + self.principle* self.interest
+			if (self.principle == 0):
+				self.monthCost = 0
+				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt to 0. Congratulations!")
+			else:
+				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt by " + str(self.monthCost - self.principle-self.interest)
 
-		print("Paid " + str(self.monthCost) "for " + self.name)
+		else:
+			print("Paid " + str(self.monthCost) "for " + self.name)
 
 		return self.monthCost
 	
@@ -95,7 +108,27 @@ class Bill():
 		
 		
 	
-
+	def showSchedule(self):
+		'''
+		Calculates how many payment periods it will take
+		Returns
+		-------
+		monthCount: float
+			The number of payment periods it will take to pay off the debt
+		
+		
+		
+		'''
+		monthCount = 0
+		testvar = self.principle
+		while(testvar > 0):
+			testvar -= self.monthCost
+			testvar += testvar * self.interest
+			monthCount+=1
+		print("With a debt of " +str(self.principle), "and a monthly interest rate of " + str(self.interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
+		return monthCount
+		
+	
 
 		
 
