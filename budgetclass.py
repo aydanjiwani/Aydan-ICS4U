@@ -14,7 +14,7 @@ for x in fLines:
 	
 for x in f2Lines:
 	DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
-	Debt.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))	
+	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))	
 	
 class Budget():
   def __init__ (self, salary, bills, debts):

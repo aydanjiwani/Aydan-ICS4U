@@ -96,6 +96,8 @@ An object that holds the information of a selected stock
 				if(key = stockindex[i].rsi):
 					print(self.name + "is ranked" + i) 
 					return i
+		f.close()
+		f2.close()
 		
 		
 		
