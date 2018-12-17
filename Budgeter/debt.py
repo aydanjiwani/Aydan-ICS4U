@@ -26,13 +26,15 @@ class Debt(Bill):
 		Shows how long it will take to pay off the principle, returns null if no principle
 	'''
 	
-	def __init__(self, name, monthCost, interest, principle, priority):
+	def __init__(self, name, monthCost, interest, principle, minimumPayment, priority):
 		'''
 		Parameters
 	----------
 	name: str
 		The name of the bill
 	monthCost : float
+		The amount currently being paid each month
+	minimumPayment : float
 		The minumum amount that must be paid each month
 	interest : float, optional
 		The interest on the payments (0 if not present)
@@ -46,6 +48,7 @@ class Debt(Bill):
 		super().__init__(name, monthCost)
 		self.interest = interest
 		self.principle = principle
+		self.minimumPayment = minimumPayment
 		self.priority = priority
 
 		
@@ -88,7 +91,7 @@ class Debt(Bill):
 		-------
 		bool
 			True if the method was successful
-			False if the method attempted to bring the value below zero
+			False if the method attempted to bring the value below the minimumPayment
 			
 		
 		Raises
@@ -102,7 +105,7 @@ class Debt(Bill):
 		'''
 		self.monthCost = newPayment
 		print("monthly payment changed to: " str(self.monthCost)
-		if monthCost > 0:
+		if monthCost > self.minimumPayment:
 			return True
 		return False
 		

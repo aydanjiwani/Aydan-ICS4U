@@ -17,8 +17,29 @@ for x in f2Lines:
 	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))	
 	
 class Budget():
-  def __init__ (self, salary, bills, debts):
+"""
+An object that holds a list of all existing bills and debts
+	
+	Attributes
+	----------
+	salary : float
+		The current income
+	bills : list
+		A list of all bills that must be paid in the budget
+	debts : list
+		A list of all debts that must be paid in the budget
+	saving:
+		The amount each month that the user wants to assign to savings
+	
+	Methods
+	-------
+	getInfo() -> none
+		A method that prints the relevant info
+	
+
+"""
+  def __init__ (self, salary, bills, debts, saving):
 	self.salary = salary
 	self.bills = bills
 	self.debts = debts
-	
+	self.saving = saving
