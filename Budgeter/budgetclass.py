@@ -14,8 +14,9 @@ for x in fLines:
 	
 for x in f2Lines:
 	DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
-	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))	
-	
+	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))
+
+
 class Budget():
 """
 An object that holds a list of all existing bills and debts
@@ -69,11 +70,14 @@ def getInfo():
 			
 	
 	"""
+	expenselist = []
 	for i in range 0,len(bills):
 		salary -= bills[i].monthCost
+		expenselist.append(bills[i])
 	salary -= savings
 	for i in range 0,len(debts):
 			salary -= debts[i].minimumPayment
+			expenselist.append(debts[i])
 	if salary <= 0:
 		print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
 		return False
@@ -86,6 +90,7 @@ def getInfo():
 				targetDebt = i
 				
 	this.debts[targetDebt].increasePayment(salary)
+	print("Total of"+ len(expenselist) +"Items found")
 	print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
 	return True
 	
