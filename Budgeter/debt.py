@@ -77,37 +77,7 @@ class Debt(Bill):
 		return self.monthCost
 	
 	
-	def increasePayment(self, newPayment: float):
-		'''
-		Attempts to change the monthly payment
-		
-		This will change self.monthCost to the value of newPayment
-		Parameters
-		----------
-		newPayment : float
-			The value to change the monthCost to.
-				
-		Returns
-		-------
-		bool
-			True if the method was successful
-			False if the method attempted to bring the value below the minimumPayment
-			
-		
-		Raises
-		------
-		AttributeException
-			If the attribute is non-existant and Python cannot add to it
-		TypeError
-			If the value of increase is not a float and it is trying to
-			be added to self.price : float.
-		
-		'''
-		self.monthCost = newPayment
-		print("monthly payment changed to: " str(self.monthCost)
-		if monthCost > self.minimumPayment:
-			return True
-		return False
+
 		
 		
 	

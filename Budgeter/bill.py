@@ -9,10 +9,6 @@ class Bill():
 		The name of the bill
 	monthCost : float
 		The minumum amount that must be paid each month
-	interest : float
-		The interest on the payments (0 if not present)
-	principle: float
-                Initial amount that must be paid back (0 if for a monthly bill)
 
 	Methods
 	-------
