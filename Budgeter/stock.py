@@ -44,7 +44,32 @@ An object that holds the information of a selected stock
         A magic number that can be used to determine if a stock is trending up or down (in theory)
    """
     
-
+	def checkRanking(self, criteria):
+		f2 = open("STOCKLIST.txt", "r")
+		stocks = f2.read().splitlines()
+		stockindex = [Stock(stocks[i],0,0,0) for i in range (0,stocks.len())]
+		values = []
+		if(criteria = 1):
+			key = self.value
+			for i in range (0,stocks.len()):
+				self.stockindex[i].getInfo()
+				values.append(stockindex[i].value)
+		ranking = binarySearch(values, stockindex.len(), 0, key)
+		print(self.name + "is ranked" + ranking) 
+		return ranking
+		if(criteria = 2):
+			key = self.sma-self.value
+			for i in range (0, stocks.len()):
+				if(key = self.stockindex[i].sma-stockindex[i].value):
+					print(self.name + "is ranked" + i) 
+					return i
+		if(criteria = 3):
+			key = self.rsi
+			for i in range (0, stocks.len()):
+				if(key = self.stockindex[i].rsi):
+					print(self.name + "is ranked" + i) 
+					return i
+		
     def getInfo(self):
 	'''
 		Prints all relevant info about stock to a text file
@@ -69,33 +94,10 @@ An object that holds the information of a selected stock
         f.write("The stock chosen is: " + self.name + "\n")
         f.write("The most recent closing price is: " + str(self.value) + "\n")
         print("stock info added to file")
-	def checkRanking(self, criteria):
-		f2 = open("STOCKLIST.txt", "r")
-		stocks = f2.read().splitlines()
-		stockindex = [Stock(stocks[i],0,0,0) for i in range (0,stocks.len())]
-		values = []
-		if(criteria = 1):
-			key = self.value
-			for i in range (0,stocks.len()):
-				stockindex[i].getInfo()
-				values.append(stockindex[i].value)
-		ranking = binarySearch(values, stockindex.len(), 0, key)
-		print(self.name + "is ranked" + ranking) 
-		return ranking
+
 				
 			
-		if(criteria = 2):
-			key = self.sma-self.value
-			for i in range (0, stocks.len()):
-				if(key = stockindex[i].sma-stockindex[i].value):
-					print(self.name + "is ranked" + i) 
-					return i
-		if(criteria = 3):
-			key = self.rsi
-			for i in range (0, stocks.len()):
-				if(key = stockindex[i].rsi):
-					print(self.name + "is ranked" + i) 
-					return i
+		
 		f.close()
 		f2.close()
 		
