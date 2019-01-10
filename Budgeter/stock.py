@@ -86,14 +86,12 @@ An object that holds the information of a selected stock
         data, meta_data = ts.get_daily(self.name)
         data2, meta_data2 = tc.get_rsi(self.name)
         data3, meta_data3 = tc.get_sma(self.name)
-		self.rsi = float(data2['2018-11-04'])
-		self.sma = float(data3['2018-11-04'])
-        teststring = data['2018-11-04']
-        print(teststring)
+		self.rsi = float(data2['2019-01-18'])
+		self.sma = float(data3['2019-01-18'])
+        teststring = data['2019-01-18']
         self.value = float(teststring['4. close'])
         f.write("The stock chosen is: " + self.name + "\n")
         f.write("The most recent closing price is: " + str(self.value) + "\n")
-        print("stock info added to file")
 
 				
 			

@@ -3,9 +3,6 @@ from bill import Bill
 from debt import Debt
 
 
-
-
-
 class Budget():
 """
 An object that holds a list of all existing bills and debts
@@ -48,40 +45,40 @@ An object that holds a list of all existing bills and debts
 	self.debts = debts
 	self.saving = saving
 	
-def getInfo():
-	"""
-	Analyzes the budget and returns if it is usable or not
-	Returns
-		-------
-		bool
-			True if the budget was valid
-			False if there was not enough money
+	def getInfo():
+		"""
+		Analyzes the budget and returns if it is usable or not
+		Returns
+			-------
+			bool
+				True if the budget was valid
+				False if there was not enough money
 			
 	
-	"""
-	expenselist = []
-	for i in range 0,len(bills):
-		salary -= bills[i].monthCost
-		expenselist.append(bills[i])
-	salary -= savings
-	for i in range 0,len(debts):
-			salary -= debts[i].minimumPayment
-			expenselist.append(debts[i])
-	if salary <= 0:
-		print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
-		return False
-	else:
-	int testvar = 99999
-	int targetDebt = -1
+		"""
+		expenselist = []
+		for i in range 0,len(bills):
+			salary -= bills[i].monthCost
+			expenselist.append(bills[i])
+		salary -= savings
 		for i in range 0,len(debts):
-			if debts[i].interest < testvar:
-				testvar = debts[i].interest
-				targetDebt = i
+				salary -= debts[i].minimumPayment
+				expenselist.append(debts[i])
+		if salary <= 0:
+			#print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
+			return False
+		else:
+			int testvar = -1
+			int targetDebt = -1
+			for i in range 0,len(debts):
+				if debts[i].interest > testvar:
+					testvar = debts[i].interest
+					targetDebt = i
 				
-	this.debts[targetDebt].increasePayment(salary)
-	print("Total of"+ len(expenselist) +"Items found")
-	print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
-	return True
+		this.debts[targetDebt].increasePayment(salary)
+		#print("Total of"+ len(expenselist) +"Items found")
+		#print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
+		return True
 	
 			
 		
