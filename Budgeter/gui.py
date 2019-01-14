@@ -19,12 +19,10 @@ for x in f2Lines:
 	DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
 	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))
 
-import tkinter as tk                # python 3
-from tkinter import font  as tkfont # python 3
-#import Tkinter as tk     # python 2
-#import tkFont as tkfont  # python 2
+import tkinter as tk
+from tkinter import font  as tkfont 
 
-class SampleApp(tk.Tk):
+class BudgeterGUI(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -103,21 +101,52 @@ class PageTwo(tk.Frame):
 		button2 = tk.Button(self, text="Start Budget Tool",
                            command=showBudget)
         button2.pack()
-        button3 = tk.Button(self, text="Main Menu",
-                           command=lambda: controller.show_frame("StartPage"))
-        button3.pack(side="bottom", fill="x", pady=10)
-		button4 = tk.Button(self, text="Start Budget Tool",
-                           command=showBudget)
-        button4.pack(side="bottom", fill="x", pady=10)
+
+		"""
 		debt = tkinter.BooleanVar()
 		c1 = tkinter.Checkbutton(lbl ,text="Debt" ,variable=debt)
 		c1.pack()
-		
+		"""
 	
 
 
 
 def showBudget:
+	messagebox.showinfo("Budget Tool","Please refer to console")
+	submitted = False
+	while(!submitted):
+		print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, and s to submit"
+		userchoice = input()
+		lastitem = "x"
+		if userchoice == "b":
+			print("Please enter name of bill")
+			billname = input()
+			print("Please enter cost of bill")
+			billCost = input()
+			f1.append(billname + "," +billCost)
+			lastitem = "b"
+	
+		elif userchoice == "d":
+			print("Please enter name of bill")
+			billname = input()
+			print("Please enter cost of bill")
+			billCost = input()
+			f2.append(billname + "," +billCost)
+			lastitem = "d"
+	
+		
+		elif userchoice == "x":
+			if(lastitem == "x"):
+				print("no items found")
+			elif("lastitem" == "b"):
+			
+			elif("lastitem" == "d"):
+			
+		elif userchoice == "m":
+	
+		elif userchoice == "s":
+			submitted = True
+	
 
 		
 	
@@ -132,6 +161,6 @@ def showStock:
 	stockFile.close()
 			
 if __name__ == "__main__":
-    app = SampleApp()
+    app = BudgeterGUI()
     app.mainloop()
 	
