@@ -45,6 +45,20 @@ An object that holds the information of a selected stock
    """
     
 	def checkRanking(self, criteria):
+		'''
+		Prints the ranking of a given stock in a criteria
+		Parameters
+		----------
+		Criteria: int
+			The criteria for the stock ranking
+		Returns
+		------
+		ranking: int
+			the ranking of that stock
+		
+		Note: Function not implemented due to exceeding free API call limit
+                
+		'''
 		f2 = open("STOCKLIST.txt", "r")
 		stocks = f2.read().splitlines()
 		stockindex = [Stock(stocks[i],0,0,0) for i in range (0,stocks.len())]
@@ -71,7 +85,7 @@ An object that holds the information of a selected stock
 					return i
 		
     def getInfo(self):
-	'''
+		'''
 		Prints all relevant info about stock to a text file
 		
 		Returns

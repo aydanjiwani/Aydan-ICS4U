@@ -26,7 +26,7 @@ class Debt(Bill):
 		Shows how long it will take to pay off the principle, returns null if no principle
 	'''
 	
-	def __init__(self, name, monthCost, interest, principle, minimumPayment, priority):
+	def __init__(self, name, monthCost, interest, principle, minimumPayment):
 		'''
 		Parameters
 	----------
@@ -49,8 +49,7 @@ class Debt(Bill):
 		self.interest = interest
 		self.principle = principle
 		self.minimumPayment = minimumPayment
-		self.priority = priority
-
+		
 		
 		
 	def payMonth(self):

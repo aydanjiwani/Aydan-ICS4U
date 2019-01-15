@@ -65,7 +65,7 @@ An object that holds a list of all existing bills and debts
 				salary -= debts[i].minimumPayment
 				expenselist.append(debts[i])
 		if salary <= 0:
-			#print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
+			print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
 			return False
 		else:
 			int testvar = -1
@@ -76,9 +76,15 @@ An object that holds a list of all existing bills and debts
 					targetDebt = i
 				
 		this.debts[targetDebt].increasePayment(salary)
-		#print("Total of"+ len(expenselist) +"Items found")
-		#print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
+
+		print("Total of"+ len(expenselist) +"Items found")
+		print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
 		return True
+		
+	def budgetMonth():
+		for i in range (0, len(debts)):
+			this.debts[i].payMonth()
+			print("payments to debts applied for the month")
 	
 			
 		

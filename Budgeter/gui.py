@@ -1,26 +1,16 @@
 
-f1= open("bills.txt","a+")
-f1Lines = f1.readlines
-f2= open("debts.txt","a+")
-f2Lines = f2.readlines
-BillList = []
-DebtList = []
 from tkinter import * as tk
 from math import *
 from bill import Bill
 from debt import Debt
 from budgetclass import Budget
 
-for x in fLines:
-	BillName,BillCost = x.split(",")
-	BillList.append(Bill(self, BillName, BillCost))
-	
-for x in f2Lines:
-	DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
-	DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))
+
+
+
 
 import tkinter as tk
-from tkinter import font  as tkfont 
+from tkinter import font as tkfont 
 
 class BudgeterGUI(tk.Tk):
 
@@ -29,9 +19,7 @@ class BudgeterGUI(tk.Tk):
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
+
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -80,7 +68,7 @@ class PageOne(tk.Frame):
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 		button2 = tk.Button(self, text="Start Stock Tool",
-                           command=showStock)
+                           command= lambda: showStock)
         button2.pack()
 		stockLabel = tk.Label(self, text="Enter Stock").grid(row=0)
 
@@ -99,7 +87,7 @@ class PageTwo(tk.Frame):
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 		button2 = tk.Button(self, text="Start Budget Tool",
-                           command=showBudget)
+                           command=lambda: showBudget)
         button2.pack()
 
 		"""
@@ -112,44 +100,110 @@ class PageTwo(tk.Frame):
 
 
 def showBudget:
-	messagebox.showinfo("Budget Tool","Please refer to console")
+	messagebox.showinfo("Budget Tool","Tool enabled in console")
+	f1= open("bills.txt","a+")
+	f2= open("debts.txt","a+")
 	submitted = False
-	while(!submitted):
-		print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, and s to submit"
-		userchoice = input()
-		lastitem = "x"
-		if userchoice == "b":
-			print("Please enter name of bill")
-			billname = input()
-			print("Please enter cost of bill")
-			billCost = input()
-			f1.append(billname + "," +billCost)
-			lastitem = "b"
-	
-		elif userchoice == "d":
-			print("Please enter name of bill")
-			billname = input()
-			print("Please enter cost of bill")
-			billCost = input()
-			f2.append(billname + "," +billCost)
-			lastitem = "d"
-	
+	while(!usingtool):
+		while(!submitted):
+			print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, s to submit a budget"
+			userchoice = input()
+			lastitem = "x"
+			if userchoice == "b":
+				print("Please enter name of bill")
+				billName = input()
+				print("Please enter cost of bill")
+				billCost = input()
+				f1.append(billName + "," +billCost)
+				lastitem = "b"
 		
-		elif userchoice == "x":
-			if(lastitem == "x"):
-				print("no items found")
-			elif("lastitem" == "b"):
+			elif userchoice == "d":
+				print("Please enter name of debt")
+				debtName = input()
+				print("Please enter cost of debt")
+				debtCost = input()
+				print("Please enter interest rate of debt")
+				debtRate = input()
+				print("Please enter minimumpayment of debt")
+				debtMinPay = input()
+				print("Please enter principle of debt")
+				debtPrinciple = input()
+				f2.append(debtName + "," + debtCost + "," + debtRate +"," + debtPrinciple + "," + debtMinPay)
+				lastitem = "d"
+		
 			
-			elif("lastitem" == "d"):
+			elif userchoice == "x":
+				if(lastitem == "x"):
+					print("no items found")
+				elif("lastitem" == "b"):
+					lines = f1.readlines()
+					lines = lines[:-1]
+					f1.close()
+					f1 = open("bills.txt", "w")
+					fl.close()
+					f1 = open("bills.txt", "a+")
+					for i in range(0,len(lines)):
+						f1.append(lines[i] + "\n" )
+						
+				
+				elif("lastitem" == "d"):
+					lines = f2.readlines()
+					lines = lines[:-1]
+					f2.close()
+					f2 = open("debts.txt", "w")
+					f2.close()
+					f2 = open("debts.txt", "a+")
+					for i in range(0,len(lines)):
+						f2.append(lines[i] + "\n" )
+				
+			elif userchoice == "m":
+				controller.show_frame("StartPage")
+				return 0;
+				
+		
+			elif userchoice == "s":
+				f1Lines = f1.readlines()
+				f2Lines = f2.readlines()
+				BillList = []
+				DebtList = []
+
+
+				for x in f1Lines:
+					BillName,BillCost = x.split(",")
+					BillList.append(Bill(self, BillName, BillCost))
+		
+				for x in f2Lines:
+					DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
+					DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))
+				f1.close()
+				f2.close()
+				print("Please enter your monthly income")
+				income = input()
+				CurrentBudget = Budget(BillList, DebtList, income, 0)
+				budgetsuccess = self.CurrentBudget.getInfo()
+				submitted = budgetsuccess
+			else:
+				print("invalid choice")
+		print("press v to view the current budget, m to move forward by a month, b to return to the budget, and c to finish using the tool")
+		userchoice2 = input()
+		if(userchoice2 == "v"):
+		
+		elif("userchoice == m"):
+		
+		elif (userchoice == "b"):
+		
+		elif (userchoice == "c"):
+		
+		else:
+			print("invalid choice")
+		
 			
-		elif userchoice == "m":
 	
-		elif userchoice == "s":
-			submitted = True
+			
 	
 
 		
-	
+
 
 def showStock:
 	currStock = self.entry.get()
