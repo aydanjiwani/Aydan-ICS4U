@@ -14,7 +14,7 @@ from tkinter import font as tkfont
 
 class BudgeterGUI(tk.Tk):
 
-    def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
 		self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 		container = tk.Frame(self)
@@ -29,40 +29,36 @@ class BudgeterGUI(tk.Tk):
 		self.frames["PageOne"].grid(row=0, column=0, sticky="nsew")
 		self.frames["PageTwo"].grid(row=0, column=0, sticky="nsew")
 		self.show_frame("StartPage")
-
-    def show_frame(self, page_name):
-        '''Show a frame for the given page name'''
-        frame = self.frames[page_name]
-        frame.tkraise()
+	
+	def show_frame(self, page_name):
+		frame = self.frames[page_name]
+		frame.tkraise()
 
 
 class StartPage(tk.Frame):
 
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="This is the start page", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-
-        button1 = tk.Button(self, text="Open Stock Tool",
-                            command=lambda: controller.show_frame("PageOne"))
-        button2 = tk.Button(self, text="Open Budget Tool",
-                            command=lambda: controller.show_frame("PageTwo"))
-        button1.pack()
-        button2.pack()
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+		label = tk.Label(self, text="This is the start page", font=controller.title_font)
+		label.pack(side="top", fill="x", pady=10)
+		button1 = tk.Button(self, text="Open Stock Tool", command=lambda: controller.show_frame("PageOne"))
+		button2 = tk.Button(self, text="Open Budget Tool",command=lambda: controller.show_frame("PageTwo"))
+		button1.grid()
+		button2.grid()
 
 
 class PageOne(tk.Frame):
 
-    def __init__(self, parent, controller):
+	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
 		label = tk.Label(self, text="Welcome to the Stock Tool", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
 		button = tk.Button(self, text="Main Menu",command=lambda: controller.show_frame("StartPage"))
-		button.pack()
+		button.grid()
 		button2 = tk.Button(self, text="Start Stock Tool",command= lambda: showStock())
-		button2.pack()
+		button2.grid()
 		stockLabel = tk.Label(self, text="Enter Stock").grid(row=0)
 		e1 = tk.Entry(self)
 		e1.grid(row=0, column=1)
@@ -70,29 +66,29 @@ class PageOne(tk.Frame):
 
 class PageTwo(tk.Frame):
 
-    def __init__(self, parent, controller):
+	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
 		label = tk.Label(self, text="Welcome to the Budget Tool", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
 		button = tk.Button(self, text="Main Menu",command=lambda: controller.show_frame("StartPage"))
-		button.pack()
+		button.grid()
 		button2 = tk.Button(self, text="Start Budget Tool",command=lambda: showBudget())
-        button2.pack()
+		button2.grid()
 
 	
 
 
 
-def showBudget:
+def showBudget():
 	messagebox.showinfo("Budget Tool","Tool enabled in console")
 	f1= open("bills.txt","a+")
 	f2= open("debts.txt","a+")
 	submitted = False
 	usingTool = True
 	while(usingTool):
-		while(!submitted):
-			print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, s to submit a budget"
+		while(submitted == False):
+			print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, s to submit a budget")
 			userchoice = input()
 			lastitem = "x"
 			if (userchoice == "b"):
@@ -174,7 +170,7 @@ def showBudget:
 		userchoice2 = input()
 		if(userchoice2 == "v"):
 			self.CurrentBudget.expenselist.sort(key=lambda x: x.cost, reverse=True)
-			for i in range (0, len(self.CurrentBudget.expenselist):
+			for i in range (0, len(self.CurrentBudget.expenselist)):
 				print(vars(self.CurrentBudget.expenselist[i]))
 				
 		
@@ -203,9 +199,9 @@ def showBudget:
 		
 
 
-def showStock:
+def showStock():
 	currStock = self.entry.get()
-	Stock currentstock[currStock,0,0,0]
+	currentstock = Stock(currStock,0,0,0)
 	self.currentstock.getInfo()
 	stockFile = open("stockinfo.txt", "r")
 	stockLines = stockFile.readlines()

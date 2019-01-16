@@ -68,10 +68,10 @@ class Debt(Bill):
 				self.monthCost = 0
 				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt to 0. Congratulations!")
 			else:
-				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt by " + str(self.monthCost - self.principle-self.interest)
+				print("Paid $" + str(self.monthCost), " on " + self.name, "reducing the original debt by " + str(self.monthCost - self.principle-self.interest))
 
 		else:
-			print("Paid " + str(self.monthCost) "for " + self.name)
+			print("Paid " + str(self.monthCost) + "for " + self.name)
 
 		return self.monthCost
 	
@@ -97,7 +97,7 @@ class Debt(Bill):
 			testvar -= self.monthCost
 			testvar += testvar * self.interest
 			monthCount+=1
-		print("With a debt of " +str(self.principle), "and a monthly interest rate of " + str(self.interest) + "%, it would take " + str(months) "to pay off this debt at" + str(monthCost) +"$ per month."  )
+		print("With a debt of " +str(self.principle) + "and a monthly interest rate of " + str(self.interest) + "%, it would take " + str(months) + "to pay off this debt at" + str(self.monthCost) +"$ per month.")
 		return monthCount
 		
 	

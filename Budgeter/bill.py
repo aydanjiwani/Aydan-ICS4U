@@ -52,7 +52,7 @@ class Bill():
                 
 		'''
 
-		print("Paid " + str(self.monthCost) "for " + self.name)
+		print("Paid " + str(self.monthCost) + "for " + self.name)
 
 		return self.monthCost
 	
@@ -84,8 +84,8 @@ class Bill():
 		
 		'''
 		self.monthCost = newPayment
-		print("monthly payment changed to: " str(self.monthCost)
-		if monthCost > 0:
+		print("monthly payment changed to: " + str(self.monthCost))
+		if(self.monthCost > 0):
 			return True
 		return False
 		
