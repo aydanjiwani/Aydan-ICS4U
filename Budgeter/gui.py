@@ -15,24 +15,20 @@ from tkinter import font as tkfont
 class BudgeterGUI(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
-
-
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
-        self.frames = {}
-        self.frames["StartPage"] = StartPage(parent=container, controller=self)
+		tk.Tk.__init__(self, *args, **kwargs)
+		self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+		container = tk.Frame(self)
+		container.pack(side="top", fill="both", expand=True)
+		container.grid_rowconfigure(0, weight=1)
+		container.grid_columnconfigure(0, weight=1)
+		self.frames = {}
+		self.frames["StartPage"] = StartPage(parent=container, controller=self)
 		self.frames["PageOne"] = PageOne(parent=container, controller=self)
 		self.frames["PageTwo"] = PageTwo(parent=container, controller=self)
 		self.frames["StartPage"].grid(row=0, column=0, sticky="nsew")
 		self.frames["PageOne"].grid(row=0, column=0, sticky="nsew")
-        self.frames["PageTwo"].grid(row=0, column=0, sticky="nsew")
-        self.show_frame("StartPage")
+		self.frames["PageTwo"].grid(row=0, column=0, sticky="nsew")
+		self.show_frame("StartPage")
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
@@ -59,18 +55,15 @@ class StartPage(tk.Frame):
 class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Welcome to the Stock Tool", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Main Menu",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-		button2 = tk.Button(self, text="Start Stock Tool",
-                           command= lambda: showStock)
-        button2.pack()
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+		label = tk.Label(self, text="Welcome to the Stock Tool", font=controller.title_font)
+		label.pack(side="top", fill="x", pady=10)
+		button = tk.Button(self, text="Main Menu",command=lambda: controller.show_frame("StartPage"))
+		button.pack()
+		button2 = tk.Button(self, text="Start Stock Tool",command= lambda: showStock())
+		button2.pack()
 		stockLabel = tk.Label(self, text="Enter Stock").grid(row=0)
-
 		e1 = tk.Entry(self)
 		e1.grid(row=0, column=1)
 
@@ -78,22 +71,15 @@ class PageOne(tk.Frame):
 class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Welcome to the Budget Tool", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Main Menu",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-		button2 = tk.Button(self, text="Start Budget Tool",
-                           command=lambda: showBudget)
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+		label = tk.Label(self, text="Welcome to the Budget Tool", font=controller.title_font)
+		label.pack(side="top", fill="x", pady=10)
+		button = tk.Button(self, text="Main Menu",command=lambda: controller.show_frame("StartPage"))
+		button.pack()
+		button2 = tk.Button(self, text="Start Budget Tool",command=lambda: showBudget())
         button2.pack()
 
-		"""
-		debt = tkinter.BooleanVar()
-		c1 = tkinter.Checkbutton(lbl ,text="Debt" ,variable=debt)
-		c1.pack()
-		"""
 	
 
 
@@ -109,7 +95,7 @@ def showBudget:
 			print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, s to submit a budget"
 			userchoice = input()
 			lastitem = "x"
-			if userchoice == "b":
+			if (userchoice == "b"):
 				print("Please enter name of bill")
 				billName = input()
 				print("Please enter cost of bill")
@@ -117,7 +103,7 @@ def showBudget:
 				f1.append(billName + "," +billCost)
 				lastitem = "b"
 		
-			elif userchoice == "d":
+			elif (userchoice == "d"):
 				print("Please enter name of debt")
 				debtName = input()
 				print("Please enter cost of debt")
@@ -132,7 +118,7 @@ def showBudget:
 				lastitem = "d"
 		
 			
-			elif userchoice == "x":
+			elif (userchoice == "x"):
 				if(lastitem == "x"):
 					print("no items found")
 				elif("lastitem" == "b"):
@@ -156,12 +142,12 @@ def showBudget:
 					for i in range(0,len(lines)):
 						f2.append(lines[i] + "\n" )
 				
-			elif userchoice == "m":
+			elif (userchoice == "m"):
 				controller.show_frame("StartPage")
 				return 0;
 				
 		
-			elif userchoice == "s":
+			elif (userchoice == "s"):
 				f1Lines = f1.readlines()
 				f2Lines = f2.readlines()
 				BillList = []
