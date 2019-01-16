@@ -26,7 +26,7 @@ An object that holds a list of all existing bills and debts
 
 """
 
-  def __init__ (self, salary, bills, debts, saving):
+  def __init__ (self, salary, bills, debts, saving, expenselist):
   """
   Parameters
 	----------
@@ -38,12 +38,15 @@ An object that holds a list of all existing bills and debts
 		A list of all debts that must be paid in the budget
 	saving:
 		The amount each month that the user wants to assign to savings
+	expenselist : list
+		A list of all bills and debts that must be paid in the budget
   
   """
 	self.salary = salary
 	self.bills = bills
 	self.debts = debts
 	self.saving = saving
+	self.expenselist = expenselist
 	
 	def getInfo():
 		"""
@@ -56,14 +59,14 @@ An object that holds a list of all existing bills and debts
 			
 	
 		"""
-		expenselist = []
+		self.expenselist = []
 		for i in range 0,len(bills):
 			salary -= bills[i].monthCost
-			expenselist.append(bills[i])
+			self.expenselist.append(bills[i])
 		salary -= savings
 		for i in range 0,len(debts):
 				salary -= debts[i].minimumPayment
-				expenselist.append(debts[i])
+				self.expenselist.append(debts[i])
 		if salary <= 0:
 			print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
 			return False
@@ -75,15 +78,15 @@ An object that holds a list of all existing bills and debts
 					testvar = debts[i].interest
 					targetDebt = i
 				
-		this.debts[targetDebt].increasePayment(salary)
+		self.debts[targetDebt].increasePayment(salary)
 
-		print("Total of"+ len(expenselist) +"Items found")
+		print("Total of"+ len(self.expenselist) +"Items found")
 		print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
 		return True
 		
 	def budgetMonth():
 		for i in range (0, len(debts)):
-			this.debts[i].payMonth()
+			self.debts[i].payMonth()
 			print("payments to debts applied for the month")
 	
 			

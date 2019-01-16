@@ -1,5 +1,5 @@
 
-from tkinter import * as tk
+from tkinter import *
 from math import *
 from bill import Bill
 from debt import Debt
@@ -104,7 +104,8 @@ def showBudget:
 	f1= open("bills.txt","a+")
 	f2= open("debts.txt","a+")
 	submitted = False
-	while(!usingtool):
+	usingTool = True
+	while(usingTool):
 		while(!submitted):
 			print("press b to enter a bill, d to enter a debt, x to delete the last item, m to return to the main menu, s to submit a budget"
 			userchoice = input()
@@ -179,7 +180,7 @@ def showBudget:
 				f2.close()
 				print("Please enter your monthly income")
 				income = input()
-				CurrentBudget = Budget(BillList, DebtList, income, 0)
+				CurrentBudget = Budget(BillList, DebtList, income, 0, [])
 				budgetsuccess = self.CurrentBudget.getInfo()
 				submitted = budgetsuccess
 			else:
@@ -187,15 +188,27 @@ def showBudget:
 		print("press v to view the current budget, m to move forward by a month, b to return to the budget, and c to finish using the tool")
 		userchoice2 = input()
 		if(userchoice2 == "v"):
+			self.CurrentBudget.expenselist.sort(key=lambda x: x.cost, reverse=True)
+			for i in range (0, len(self.CurrentBudget.expenselist):
+				print(vars(self.CurrentBudget.expenselist[i]))
+				
 		
 		elif("userchoice == m"):
+			self.CurrentBudget.budgetMonth()
+			
 		
 		elif (userchoice == "b"):
+			submitted = False
 		
 		elif (userchoice == "c"):
+			usingTool = False
+			
+		
 		
 		else:
 			print("invalid choice")
+	controller.show_frame("StartPage")
+	return 0;
 		
 			
 	

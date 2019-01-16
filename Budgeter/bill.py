@@ -46,7 +46,7 @@ class Bill():
 		Conducts the monthly payment, reducing the principle and adding interest if applicable.
 		
 		Returns
-		------
+		------	
 		monthCost: float
 		The amount paid this month
                 
