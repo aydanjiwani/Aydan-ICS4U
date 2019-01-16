@@ -26,13 +26,12 @@ class BudgeterGUI(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-		self.frames["StartPage"] = StartPage(parent=container, controller=self)
+        self.frames["StartPage"] = StartPage(parent=container, controller=self)
 		self.frames["PageOne"] = PageOne(parent=container, controller=self)
 		self.frames["PageTwo"] = PageTwo(parent=container, controller=self)
-
 		self.frames["StartPage"].grid(row=0, column=0, sticky="nsew")
 		self.frames["PageOne"].grid(row=0, column=0, sticky="nsew")
-		self.frames["PageTwo"].grid(row=0, column=0, sticky="nsew")
+        self.frames["PageTwo"].grid(row=0, column=0, sticky="nsew")
         self.show_frame("StartPage")
 
     def show_frame(self, page_name):
