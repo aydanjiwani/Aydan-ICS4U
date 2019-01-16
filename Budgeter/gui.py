@@ -5,7 +5,12 @@ from budgetclass import Budget
 import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox
-
+"""
+fclearbills= open("bills.txt","w")
+fcleardebts= open("debts.txt","w")
+fclearbills.close()
+fcleardebts.close()
+"""
 class BudgeterGUI(tk.Tk):
 
 	def __init__(self, *args, **kwargs):
@@ -89,22 +94,22 @@ def showBudget():
 				print("Please enter name of bill")
 				billName = input()
 				print("Please enter cost of bill")
-				billCost = input()
-				f1.write(billName + "," +billCost)
+				billCost = float(input())
+				f1.write(billName + "," +str(billCost) + "\n")
 				lastitem = "b"
 		
 			elif (userchoice == "d"):
 				print("Please enter name of debt")
 				debtName = input()
 				print("Please enter cost of debt")
-				debtCost = input()
+				debtCost = float(input())
 				print("Please enter interest rate of debt")
-				debtRate = input()
+				debtRate = float(input())
 				print("Please enter minimumpayment of debt")
-				debtMinPay = input()
+				debtMinPay = float(input())
 				print("Please enter principle of debt")
-				debtPrinciple = input()
-				f2.write(debtName + "," + debtCost + "," + debtRate +"," + debtPrinciple + "," + debtMinPay)
+				debtPrinciple = float(input())
+				f2.write(debtName + "," + str(debtCost) + "," + str(debtRate) +"," + str(debtPrinciple) + "," + str(debtMinPay) + "\n")
 				lastitem = "d"
 		
 			
@@ -138,24 +143,35 @@ def showBudget():
 				
 		
 			elif (userchoice == "s"):
+				f1.close()
+				f1 = open("bills.txt", "r")
+				f2.close()
+				f2 = open("debts.txt", "r")
 				f1Lines = f1.readlines()
 				f2Lines = f2.readlines()
 				BillList = []
 				DebtList = []
+				print(str(f1Lines))
+				print(str(f2Lines))
+				
 
 
-				for x in f1Lines:
-					BillName,BillCost = x.split(",")
-					BillList.append(Bill(self, BillName, BillCost))
+				for x in range (0,len(f1Lines)):
+					BillName,BillCost = str(f1Lines).split(",")
+					BillList.append(Bill(BillName, float(BillCost)))
 		
-				for x in f2Lines:
-					DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority = x.split(",")
-					DebtList.append(Debt(self, DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtPriority))
+				for x in range (0,len(f2Lines)):
+					DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtMinPay = str(f2Lines).split(",")
+					DebtList.append(Debt(DebtName,float(DebtCost),float(DebtInterest),float(DebtPrinciple), float(DebtMinPay)))
 				f1.close()
 				f2.close()
 				print("Please enter your monthly income")
-				income = input()
-				CurrentBudget = Budget(BillList, DebtList, income, 0, [])
+				income = int(input())
+				print("Please enter your monthly savings goal")
+				savingsGoal = int(input())
+				print(DebtList)
+				print(BillList)
+				CurrentBudget = Budget(income, BillList, DebtList, savingsGoal, [])
 				budgetsuccess = CurrentBudget.getInfo()
 				submitted = budgetsuccess
 			else:

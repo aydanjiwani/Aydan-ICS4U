@@ -72,13 +72,13 @@ class Budget():
 			return False
 		else:
 			testvar = -1
-			targetDebt = -1
-			for i in range (0,len(debts)):
+			targetDebt = 0
+			for i in range (0,len(self.debts)):
 				if self.debts[i].interest > testvar:
 					testvar = self.debts[i].interest
 					targetDebt = i
 				
-		self.debts[targetDebt].increasePayment(salary)
+		self.debts[targetDebt].increasePayment(currSalary)
 
 		print("Total of"+ len(self.expenselist) +"Items found")
 		print(currSalary + "was left over after savings and bills and used to pay off" + self.debts[targetDebt].name)
