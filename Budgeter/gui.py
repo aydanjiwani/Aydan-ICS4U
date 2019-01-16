@@ -3,7 +3,8 @@ from bill import Bill
 from debt import Debt
 from budgetclass import Budget
 import tkinter as tk
-from tkinter import font as tkfont 
+from tkinter import font as tkfont
+from tkinter import messagebox
 
 class BudgeterGUI(tk.Tk):
 
@@ -89,7 +90,7 @@ def showBudget():
 				billName = input()
 				print("Please enter cost of bill")
 				billCost = input()
-				f1.append(billName + "," +billCost)
+				f1.write(billName + "," +billCost)
 				lastitem = "b"
 		
 			elif (userchoice == "d"):
@@ -103,7 +104,7 @@ def showBudget():
 				debtMinPay = input()
 				print("Please enter principle of debt")
 				debtPrinciple = input()
-				f2.append(debtName + "," + debtCost + "," + debtRate +"," + debtPrinciple + "," + debtMinPay)
+				f2.write(debtName + "," + debtCost + "," + debtRate +"," + debtPrinciple + "," + debtMinPay)
 				lastitem = "d"
 		
 			
@@ -118,7 +119,7 @@ def showBudget():
 					fl.close()
 					f1 = open("bills.txt", "a+")
 					for i in range(0,len(lines)):
-						f1.append(lines[i] + "\n" )
+						f1.write(lines[i] + "\n" )
 						
 				
 				elif("lastitem" == "d"):
@@ -129,7 +130,7 @@ def showBudget():
 					f2.close()
 					f2 = open("debts.txt", "a+")
 					for i in range(0,len(lines)):
-						f2.append(lines[i] + "\n" )
+						f2.write(lines[i] + "\n" )
 				
 			elif (userchoice == "m"):
 				controller.show_frame("StartPage")
@@ -155,7 +156,7 @@ def showBudget():
 				print("Please enter your monthly income")
 				income = input()
 				CurrentBudget = Budget(BillList, DebtList, income, 0, [])
-				budgetsuccess = self.CurrentBudget.getInfo()
+				budgetsuccess = CurrentBudget.getInfo()
 				submitted = budgetsuccess
 			else:
 				print("invalid choice")
@@ -168,7 +169,7 @@ def showBudget():
 				
 		
 		elif("userchoice == m"):
-			self.CurrentBudget.budgetMonth()
+			CurrentBudget.budgetMonth()
 			
 		
 		elif (userchoice == "b"):
@@ -193,9 +194,9 @@ def showBudget():
 
 
 def showStock():
-	currStock = e1.entry.get()
+	currStock = e1.get()
 	currentstock = Stock(currStock,0,0,0)
-	self.currentstock.getInfo()
+	currentstock.getInfo()
 	stockFile = open("stockinfo.txt", "r")
 	stockLines = stockFile.readlines()
 	messagebox.showinfo("Stock Info", stockLines)

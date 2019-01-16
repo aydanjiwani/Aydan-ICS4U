@@ -47,7 +47,7 @@ class Budget():
 		self.saving = saving
 		self.expenselist = expenselist
 	
-	def getInfo():
+	def getInfo(self):
 		"""
 		Analyzes the budget and returns if it is usable or not
 		Returns
@@ -59,32 +59,33 @@ class Budget():
 	
 		"""
 		self.expenselist = []
-		for i in range (0,len(bills)):
-			salary -= bills[i].monthCost
-			self.expenselist.append(bills[i])
-		salary -= savings
-		for i in range (0,len(debts))	:
-				salary -= debts[i].minimumPayment
-				self.expenselist.append(debts[i])
-		if salary <= 0:
+		currSalary = self.salary
+		for i in range (0,len(self.bills)):
+			currSalary -= self.bills[i].monthCost
+			self.expenselist.append(self.bills[i])
+		currSalary -= self.saving
+		for i in range (0,len(self.debts)):
+				currSalary -= debts[i].minimumPayment
+				self.expenselist.append(self.debts[i])
+		if currSalary <= 0:
 			print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
 			return False
 		else:
 			testvar = -1
 			targetDebt = -1
 			for i in range (0,len(debts)):
-				if debts[i].interest > testvar:
-					testvar = debts[i].interest
+				if self.debts[i].interest > testvar:
+					testvar = self.debts[i].interest
 					targetDebt = i
 				
 		self.debts[targetDebt].increasePayment(salary)
 
 		print("Total of"+ len(self.expenselist) +"Items found")
-		print(salary + "was left over after savings and bills and used to pay off" + debts[targetDebt].name)
+		print(currSalary + "was left over after savings and bills and used to pay off" + self.debts[targetDebt].name)
 		return True
 		
-	def budgetMonth():
-		for i in range (0, len(debts)):
+	def budgetMonth(self):
+		for i in range (0, len(self.debts)):
 			self.debts[i].payMonth()
 			print("payments to debts applied for the month")
 	
