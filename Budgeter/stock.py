@@ -109,6 +109,16 @@ class Stock():
 		self.value = float(teststring['4. close'])
 		f.write("The stock chosen is: " + self.name + "\n")
 		f.write("The most recent closing price is: " + str(self.value) + " more info in console")
+		if(self.rsi > 70):
+			print("this stock has a high RSI and is currently oversold. The price may fall soon")
+		elif(self.rsi < 30):
+			print("this stock has a low RSI and is currently overbought. The price may rise soon")
+		else:
+			print("the stock is trading at normal levels")
+		if(self.value > self.sma):
+			print("the price of this stock is currently higher than the moving average. it is trending upwards")
+		else:
+			print("the price of this stock is currently lower than the moving average. it is trending downwards")
 		f.close()
 		
 		

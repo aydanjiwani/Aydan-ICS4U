@@ -1,2 +1,2 @@
 The stock chosen is: A
-The most recent closing price is: 70.03more info in console
+The most recent closing price is: 70.03 more info in console
