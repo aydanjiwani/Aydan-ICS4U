@@ -119,6 +119,10 @@ def showBudget():
 	Returns
 	-----
 	none
+	Exceptions
+	-------------
+	IndexOutOfBoundsError: Raised when an attempt to submit a budget with an empty bill or debt list happens
+	ValueError: Raised when a nonnumber is entered into a numerical field for a budget item
 	
 	"""
 	messagebox.showinfo("Budget Tool","Tool enabled in console")
@@ -256,6 +260,9 @@ def showStock():
 	Returns
 	-----
 	none
+	Exceptions
+	-----------
+	KeyError: Raised when an invalid stock ticker is entered
 	
 	"""
 	print("Please enter a stock Ticker")
