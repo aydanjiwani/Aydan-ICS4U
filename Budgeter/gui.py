@@ -1,6 +1,7 @@
 from math import *
 from bill import Bill
 from debt import Debt
+from stock import Stock
 from budgetclass import Budget
 import tkinter as tk
 from tkinter import font as tkfont
