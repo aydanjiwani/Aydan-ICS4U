@@ -65,7 +65,7 @@ class Budget():
 			self.expenselist.append(self.bills[i])
 		currSalary -= self.saving
 		for i in range (0,len(self.debts)):
-				currSalary -= debts[i].minimumPayment
+				currSalary -= self.debts[i].minimumPayment
 				self.expenselist.append(self.debts[i])
 		if currSalary <= 0:
 			print("Error, not enough funds to meet savings goal and pay bills. Try reducing bills or savings goal to pay off debts")
@@ -80,8 +80,8 @@ class Budget():
 				
 		self.debts[targetDebt].increasePayment(currSalary)
 
-		print("Total of"+ len(self.expenselist) +"Items found")
-		print(currSalary + "was left over after savings and bills and used to pay off" + self.debts[targetDebt].name)
+		print("Total of "+ str(len(self.expenselist)) +" Items found")
+		print(str(currSalary) + " was left over after savings and bills and used to pay off " + self.debts[targetDebt].name)
 		return True
 		
 	def budgetMonth(self):

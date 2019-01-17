@@ -5,12 +5,12 @@ from budgetclass import Budget
 import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox
-"""
+
 fclearbills= open("bills.txt","w")
 fcleardebts= open("debts.txt","w")
 fclearbills.close()
 fcleardebts.close()
-"""
+
 class BudgeterGUI(tk.Tk):
 
 	def __init__(self, *args, **kwargs):
@@ -59,8 +59,8 @@ class PageOne(tk.Frame):
 		button4 = tk.Button(self, text="Start Stock Tool",command= lambda: showStock())
 		button4.pack()
 		stockLabel = tk.Label(self, text="Enter Stock").pack(side="bottom", fill="x", pady=10)
-		e1 = tk.Entry(self)
-		e1.pack()
+		stockEnter = tk.Entry(self)
+		stockEnter.pack()
 
 
 class PageTwo(tk.Frame):
@@ -151,17 +151,16 @@ def showBudget():
 				f2Lines = f2.readlines()
 				BillList = []
 				DebtList = []
-				print(str(f1Lines))
-				print(str(f2Lines))
+		
 				
 
 
-				for x in range (0,len(f1Lines)):
-					BillName,BillCost = str(f1Lines).split(",")
+				for i in range (0,len(f1Lines)):
+					BillName,BillCost = f1Lines[i].strip("\n").split(",")
 					BillList.append(Bill(BillName, float(BillCost)))
 		
-				for x in range (0,len(f2Lines)):
-					DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtMinPay = str(f2Lines).split(",")
+				for j in range (0,len(f2Lines)):
+					DebtName,DebtCost,DebtInterest,DebtPrinciple,DebtMinPay = f2Lines[j].strip("\n").split(",")
 					DebtList.append(Debt(DebtName,float(DebtCost),float(DebtInterest),float(DebtPrinciple), float(DebtMinPay)))
 				f1.close()
 				f2.close()
@@ -179,7 +178,7 @@ def showBudget():
 		print("press v to view the current budget, m to move forward by a month, b to return to the budget, and c to finish using the tool")
 		userchoice2 = input()
 		if(userchoice2 == "v"):
-			self.CurrentBudget.expenselist.sort(key=lambda x: x.cost, reverse=True)
+			CurrentBudget.expenselist.sort(key=lambda x: x.cost, reverse=True)
 			for i in range (0, len(self.CurrentBudget.expenselist)):
 				print(vars(self.CurrentBudget.expenselist[i]))
 				
@@ -210,7 +209,8 @@ def showBudget():
 
 
 def showStock():
-	currStock = e1.get()
+	print("Please enter a stock Ticker")
+	currStock = input()
 	currentstock = Stock(currStock,0,0,0)
 	currentstock.getInfo()
 	stockFile = open("stockinfo.txt", "r")
