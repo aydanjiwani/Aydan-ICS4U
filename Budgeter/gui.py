@@ -13,6 +13,17 @@ fclearbills.close()
 fcleardebts.close()
 
 class BudgeterGUI(tk.Tk):
+	"""
+	a tkinter object that holds all frames/screens to switch between
+	Attributes:
+	From tkinter library
+	
+	Methods:
+	showframe(page_name:str) -> ()
+		displays the set page
+	
+	
+	"""
 
 	def __init__(self, *args, **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
@@ -36,6 +47,13 @@ class BudgeterGUI(tk.Tk):
 
 
 class StartPage(tk.Frame):
+	"""
+	a tkinter object that shows the main page
+	Attributes:
+	from tkinter library
+	
+	
+	"""
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
@@ -49,6 +67,13 @@ class StartPage(tk.Frame):
 
 
 class PageOne(tk.Frame):
+	"""
+	a tkinter object that shows the stock tool page
+	Attributes:
+	from tkinter library
+	
+	
+	"""
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
@@ -65,6 +90,13 @@ class PageOne(tk.Frame):
 
 
 class PageTwo(tk.Frame):
+	"""
+	a tkinter object that shows the budget tool page
+	Attributes:
+	from tkinter library
+	
+	
+	"""
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
@@ -81,6 +113,14 @@ class PageTwo(tk.Frame):
 
 
 def showBudget():
+	"""
+	displays the budget tool, and the completed budget
+	
+	Returns
+	-----
+	none
+	
+	"""
 	messagebox.showinfo("Budget Tool","Tool enabled in console")
 	f1= open("bills.txt","a+")
 	f2= open("debts.txt","a+")
@@ -210,6 +250,14 @@ def showBudget():
 
 
 def showStock():
+	"""
+	displays the stock tool, and the stock analysis
+	
+	Returns
+	-----
+	none
+	
+	"""
 	print("Please enter a stock Ticker")
 	currStock = input()
 	currentstock = Stock(currStock,0,0,0)
